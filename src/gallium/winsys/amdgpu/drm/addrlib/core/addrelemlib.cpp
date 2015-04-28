@@ -1258,8 +1258,6 @@ VOID AddrElemLib::RestoreSurfaceInfo(
     UINT_32 height;
     UINT_32 bpp;
 
-    BOOL_32 bBCnFormat = FALSE;
-
     ADDR_ASSERT(pBpp != NULL);
     ADDR_ASSERT(pWidth != NULL && pHeight != NULL);
 
@@ -1283,12 +1281,10 @@ VOID AddrElemLib::RestoreSurfaceInfo(
         case ADDR_PACKED_BC1: // Fall through
         case ADDR_PACKED_BC4:
             originalBits = 64;
-            bBCnFormat = TRUE;
             break;
         case ADDR_PACKED_BC2: // Fall through
         case ADDR_PACKED_BC3: // Fall through
             case ADDR_PACKED_BC5:
-            bBCnFormat = TRUE;
             originalBits = 128;
             break;
         case ADDR_ROUND_BY_HALF:  // Fall through

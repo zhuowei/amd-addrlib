@@ -2316,7 +2316,6 @@ VOID AddrLib::HwlComputeXmaskCoordFromAddr(
 {
     UINT_32 pipe;
     UINT_32 numPipes;
-    UINT_32 numGroupBits;
     UINT_32 numPipeBits;
     UINT_32 macroTilePitch;
     UINT_32 macroTileHeight;
@@ -2359,7 +2358,6 @@ VOID AddrLib::HwlComputeXmaskCoordFromAddr(
     //
     // Compute the number of group and pipe bits.
     //
-    numGroupBits = Log2(m_pipeInterleaveBytes);
     numPipeBits  = Log2(numPipes);
 
     UINT_32 groupBits = 8 * m_pipeInterleaveBytes;
@@ -3474,9 +3472,6 @@ VOID AddrLib::ComputeMipLevel(
     ADDR_COMPUTE_SURFACE_INFO_INPUT* pIn ///< [in/out] Input structure
     ) const
 {
-    // Check if HWL has handled
-    BOOL_32 hwlHandled = FALSE;
-
     if (AddrElemLib::IsBlockCompressed(pIn->format))
     {
         if (pIn->mipLevel == 0)
@@ -3490,7 +3485,7 @@ VOID AddrLib::ComputeMipLevel(
         }
     }
 
-    hwlHandled = HwlComputeMipLevel(pIn);
+    HwlComputeMipLevel(pIn);
 }
 
 /**
